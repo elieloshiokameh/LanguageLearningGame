@@ -1,6 +1,7 @@
 .App {
   width: 100vw;
   height: 100vh;
+  display: grid;
 }
 
 .Sidebar {
@@ -18,8 +19,11 @@
 .Navbar {
   height: 20%;
   width: 100%;
-  background-color: red;
   text-align: center;
+}
+
+.Nav {
+  background-color: red;
 }
 
 .Main {
@@ -35,8 +39,30 @@
   background-color: purple;
 }
 
+.Timer {
+  padding: 2%;
+}
+
+.Question {
+  padding: 2%;
+  font-size: 20px;
+}
+
+.Keyword {
+  color: red;
+}
+
+.Answer {
+  font-size: 80px;
+}
+
+.Answer-box {
+  padding: 2%;
+}
+
 .button {
   background-color: #04AA6D; /* Green */
+  min-width: 30%;
   border: none;
   color: white;
   padding: 16px 32px;

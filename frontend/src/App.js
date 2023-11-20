@@ -6,7 +6,9 @@ import Game from './components/Game';
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <div className="Nav">
+        <Navbar/>
+      </div>
       <div className="Main">
         <Sidebar/>
         <Game/>
