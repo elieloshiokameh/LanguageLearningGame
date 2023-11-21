@@ -9,7 +9,7 @@ function App() {
       <Navbar/>
       <div className="Main">
         <Sidebar/>
-        <Game/>
+        <Game keyword={"rabbit"} language={"French"}/>
       </div>
     </div>
   );

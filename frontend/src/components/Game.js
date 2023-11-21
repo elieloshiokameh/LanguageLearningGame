@@ -1,11 +1,9 @@
 import "../App.css";
 import React, { useState } from 'react';
 
-function Game() {
+function Game({keyword, language}) {
 
     const timer = "TIMER"
-    const keyword = "Rabbit"
-    const language = "French"
 
     const [typedWord, setTypedWord] = useState(Array(keyword.length).fill(''));
       
