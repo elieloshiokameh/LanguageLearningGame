@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <div className="Main">
-        <Sidebar onButtonClick={onLanguageSelect} />
+        <Sidebar onLanguageSelect={onLanguageSelect} />
         <Game keyword={"rabbit"} language={currentLanguage}/>
       </div>
     </div>
