@@ -70,14 +70,6 @@
   color: red;
 }
 
-.Answer {
-  font-size: 80px;
-}
-
-.Answer-box {
-  padding: 2%;
-}
-
 .button {
   background-color: #04AA6D;
   min-width: 30%;
@@ -116,4 +108,13 @@
 .button2:hover {
   background-color: red;
   color: white;
+}
+
+input {
+  width: 100px;
+  height: 100px;
+  font-size: 40px;
+  margin: 10px;
+  text-align: center;
+  border: 2px solid black;
 }
