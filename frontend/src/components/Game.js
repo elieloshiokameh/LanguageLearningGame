@@ -1,5 +1,6 @@
 import "../App.css";
 import { useNavigate } from 'react-router-dom';
+import { Outlet, Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
@@ -37,7 +38,11 @@ function Game() {
                     <button onClick={startGame}>play</button>
                 )}
                 {isRunning === true && (
-                    <h1>game {flag} {seconds}</h1>
+                    <div>
+                        <h1>game {flag} {seconds}</h1>
+                        <button><Link to="/statistics">finish</Link></button>
+                        <Outlet />
+                    </div>
                 )}
                 {seconds === 0 && (
                     navigate('/statistics')

@@ -6,8 +6,8 @@ function Login() {
         <div>
             <nav>
                 <h1>Login</h1>
-                <button><Link to="/">menu</Link></button>
                 <button><Link to="/languageselect">continue</Link></button>
+                <button><Link to="/">menu</Link></button>
             </nav>
             <Outlet />
         </div>
