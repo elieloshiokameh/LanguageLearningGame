@@ -3,11 +3,13 @@ import { Outlet, Link } from "react-router-dom";
 
 function Login() {
     return (
-        <div>
+        <div className="Login">
             <nav>
                 <h1>Login</h1>
-                <button><Link to="/languageselect">continue</Link></button>
-                <button><Link to="/">menu</Link></button>
+                <div className="buttons">
+                    <Link to="/languageselect">continue</Link>
+                    <Link to="/">menu</Link>
+                </div>
             </nav>
             <Outlet />
         </div>

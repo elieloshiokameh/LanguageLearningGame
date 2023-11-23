@@ -7,3 +7,34 @@
   margin: 0;
   padding: 0;
 }
+
+a:link, a:visited {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: medium;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: green;
+  color: white;
+}
+
+.button {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: medium;
+  display: inline-block;
+}
+
+.button:hover {
+  background-color: green;
+  color: white;
+}

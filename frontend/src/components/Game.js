@@ -35,12 +35,15 @@ function Game() {
         <div>
            <nav>
                 {isRunning === false && (
-                    <button onClick={startGame}>play</button>
+                    <div>
+                        <h1>game {flag}</h1>
+                        <button class="button" onClick={startGame}>play</button>
+                    </div>
                 )}
                 {isRunning === true && (
                     <div>
-                        <h1>game {flag} {seconds}</h1>
-                        <button><Link to={`/statistics/${seconds}`}>finish</Link></button>
+                        <h1>{seconds}</h1>
+                        <Link to={`/statistics/${seconds}`}>finish</Link>
                         <Outlet />
                     </div>
                 )}

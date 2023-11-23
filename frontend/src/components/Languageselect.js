@@ -5,12 +5,14 @@ import { Outlet, Link } from "react-router-dom";
 function Languageselect() {
 
     return (
-        <div>
+        <div className="Languageselect">
             <nav>
                 <h1>Language Select</h1>
-                <button><Link to="/game/Irish"><Flag code="irl" height="32"/></Link></button>
-                <button><Link to="/game/French"><Flag code="fra" height="32"/></Link></button>
-                <button><Link to="/game/Spanish"><Flag code="esp" height="32"/></Link></button>
+                <div className="flags">
+                    <Link to="/game/Irish"><Flag code="irl" height="32"/></Link>
+                    <Link to="/game/French"><Flag code="fra" height="32"/></Link>
+                    <Link to="/game/Spanish"><Flag code="esp" height="32"/></Link>
+                </div>
             </nav>
             <Outlet />
         </div>

@@ -6,7 +6,7 @@ function Menu() {
         <div>
             <nav>
                 <h1>Menu</h1>
-                <button><Link to="/login">Login</Link></button>
+                <Link to="/login">Login</Link>
             </nav>
             <Outlet />
         </div>
