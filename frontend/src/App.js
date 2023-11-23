@@ -18,7 +18,7 @@ export default function App() {
             <Route index element={<Menu />} />
             <Route path="login" element={<Login />} />
             <Route path="languageselect" element={<Languageselect />} />
-            <Route path="game" element={<Game />} />
+            <Route path="game/:flag" element={<Game />} />
             <Route path="statistics" element={<Statistics />} />
             <Route path="*" element={<Nopage />} />
           </Route>
