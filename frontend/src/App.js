@@ -1,26 +1,32 @@
 import './App.css';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Menu from './components/Menu';
+import Login from './components/Login';
+import Languageselect from './components/Languageselect';
 import Game from './components/Game';
-import React, { useState } from 'react';
+import Statistics from './components/Statistics';
+import Nopage from './components/Nopage';
 
-function App() {
-
-  const [currentLanguage, setLanguage] = useState("Irish");
-
-  const onLanguageSelect = (selectedLanguage) => {
-    setLanguage(selectedLanguage);
-  };
+export default function App() {
 
   return (
-    <div className="App">
-      <Navbar/>
-      <div className="Main">
-        <Sidebar onLanguageSelect={onLanguageSelect} />
-        <Game keyword={"rabbit"} language={currentLanguage}/>
-      </div>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/">
+            <Route index element={<Menu />} />
+            <Route path="login" element={<Login />} />
+            <Route path="languageselect" element={<Languageselect />} />
+            <Route path="game" element={<Game />} />
+            <Route path="statistics" element={<Statistics />} />
+            <Route path="*" element={<Nopage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
