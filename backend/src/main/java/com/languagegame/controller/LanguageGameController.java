@@ -1,6 +1,6 @@
-package com.example.backend.controller;
+package com.languagegame.controller;
 
-import com.example.backend.service.LanguageGameService;
+import com.languagegame.service.LanguageGameService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

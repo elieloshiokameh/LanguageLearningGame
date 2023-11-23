@@ -1,4 +1,4 @@
-package com.example.backend.domain;
+package com.languagegame.domain;
 
 public class TranslationResponse {
     private String translatedText;

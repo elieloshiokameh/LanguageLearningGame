@@ -1,7 +1,7 @@
-package com.example.backend.service;
+package com.languagegame.service;
 
-import com.example.backend.domain.Language;
-import com.example.backend.domain.TranslationResponse;
+import com.languagegame.domain.Language;
+import com.languagegame.domain.TranslationResponse;
 import jakarta.annotation.PostConstruct;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -78,8 +78,9 @@ public class LanguageGameService {
 
     private String translateToLanguage(String word, String languageCode) {
         Map<String, String> apiRequestBody = Map.of(
-                "q", word, "source",
-                "en", "target", languageCode
+                "q", word,
+                "source", "en",
+                "target", languageCode
         );
 
         ResponseEntity<TranslationResponse> response = restTemplate.postForEntity(

@@ -1,4 +1,4 @@
-package com.example.backend.domain;
+package com.languagegame.domain;
 
 import java.util.List;
 
