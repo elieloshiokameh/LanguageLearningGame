@@ -7,7 +7,9 @@ function Statistics() {
         <div>
            <nav>
                 <h1>Stats</h1>
-                <Link to="/">menu</Link>
+                <div className="buttons">
+                    <Link to="/">menu</Link>
+                </div>
             </nav>
             <Outlet />
         </div>
