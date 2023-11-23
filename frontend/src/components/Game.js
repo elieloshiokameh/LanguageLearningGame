@@ -40,12 +40,12 @@ function Game() {
                 {isRunning === true && (
                     <div>
                         <h1>game {flag} {seconds}</h1>
-                        <button><Link to="/statistics">finish</Link></button>
+                        <button><Link to={`/statistics/${seconds}`}>finish</Link></button>
                         <Outlet />
                     </div>
                 )}
                 {seconds === 0 && (
-                    navigate('/statistics')
+                    navigate(`/statistics/${seconds}`)
                 )}
             </nav>
         </div>
