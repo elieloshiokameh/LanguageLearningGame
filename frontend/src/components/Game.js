@@ -13,11 +13,15 @@ function Game() {
     const [seconds, setSeconds] = useState(5);
     const [isRunning, setIsRunning] = useState(false);
 
+    const [userInput, setUserInput] = useState('');
+    const [isInputEnabled, setIsInputEnabled] = useState(false);
+
     useEffect(() => {
         let timer;
     
         if (isRunning && seconds > 0) {
           timer = setInterval(() => {
+            setIsInputEnabled(true);
             setSeconds((prevSeconds) => prevSeconds - 1);
           }, 1000);
         } else if (seconds === 0) {
@@ -29,6 +33,17 @@ function Game() {
     
     const startGame = () => {
         setIsRunning(true);
+      };
+
+    const handleInputChange = (event) => {
+        setUserInput(event.target.value);
+      };
+
+    const handleEnterPress = (event) => {
+        if (event.key === 'Enter') {
+          console.log('User input:', userInput);
+          setIsInputEnabled(false);
+        }
       };
 
     return (
@@ -46,7 +61,17 @@ function Game() {
                     <div>
                         <h1>{seconds}</h1>
                         <div className="buttons">
+                        {isInputEnabled ? (
+                          <input
+                            type="text"
+                            placeholder="Enter your data"
+                            value={userInput}
+                            onChange={handleInputChange}
+                            onKeyDown={handleEnterPress}
+                          />
+                        ) : (
                           <Link to={`/statistics/${seconds}`}>finish</Link>
+                        )}
                         </div>
                         <Outlet />
                     </div>
