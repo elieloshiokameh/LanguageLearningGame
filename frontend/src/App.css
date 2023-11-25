@@ -15,7 +15,6 @@ a:link, a:visited {
   text-align: center;
   text-decoration: none;
   font-size: medium;
-  display: inline-block;
 }
 
 a:hover, a:active {
@@ -31,7 +30,6 @@ a:hover, a:active {
   text-align: center;
   text-decoration: none;
   font-size: medium;
-  display: inline-block;
 }
 
 .button:hover {
@@ -41,5 +39,6 @@ a:hover, a:active {
 }
 
 .buttons {
-  padding: 10px;
+  padding: 20px;
+  display: inline-block;
 }

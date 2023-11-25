@@ -8,10 +8,27 @@ function Game() {
 
     const navigate = useNavigate();
 
-    const { flag } = useParams();
+    const { language1 } = useParams();
+    const { language2 } = useParams();
 
-    const [seconds, setSeconds] = useState(5);
+    const [wordPair, setWordPair] = useState("");
+
+    const [seconds, setSeconds] = useState(60);
     const [isRunning, setIsRunning] = useState(false);
+
+    const fetchWordPair = async () => {
+      try {
+          console.log("Languages:", language1, language2)
+          const response = await fetch(`http://localhost:8080/api/${language1}/${language2}/randomWord`);
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+          setWordPair(data);
+      } catch (error) {
+          console.error('Error fetching language data:', error);
+      }
+    };
 
     useEffect(() => {
         let timer;
@@ -29,6 +46,7 @@ function Game() {
     
     const startGame = () => {
         setIsRunning(true);
+        fetchWordPair();
       };
 
     return (
@@ -36,7 +54,7 @@ function Game() {
            <nav>
                 {isRunning === false && (
                     <div>
-                        <h1>game {flag}</h1>
+                        <h1>game {language2}</h1>
                         <div className="buttons">
                            <button class="button" onClick={startGame}>play</button>
                         </div>
@@ -44,7 +62,8 @@ function Game() {
                 )}
                 {isRunning === true && (
                     <div>
-                        <h1>{seconds}</h1>
+                        <h1>seconds remaining: {seconds}</h1>
+                        <h1>wordPair: {wordPair[0]} and {wordPair[1]}</h1>
                         <div className="buttons">
                           <Link to={`/statistics/${seconds}`}>finish</Link>
                         </div>
