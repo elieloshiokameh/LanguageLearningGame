@@ -32,7 +32,7 @@ function Languageselect() {
                         <div>
                             {Object.entries(languages).map(([abv, name]) => (
                                 <div className="buttons">
-                                    <Link to={`/game/en/${abv}`}>{name}</Link>
+                                    <Link to={`/game/en/English/${abv}/${name}`}>{name}</Link>
                                 </div>
                             ))}
                         </div> 

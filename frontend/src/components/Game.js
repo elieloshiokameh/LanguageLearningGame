@@ -8,27 +8,44 @@ function Game() {
 
     const navigate = useNavigate();
 
+    const { language1abv } = useParams();
+    const { language2abv } = useParams();
+
     const { language1 } = useParams();
     const { language2 } = useParams();
-
-    const [wordPair, setWordPair] = useState("");
 
     const [seconds, setSeconds] = useState(60);
     const [isRunning, setIsRunning] = useState(false);
 
-    const fetchWordPair = async () => {
+    const [isLoadingGame, setIsLoadingGame] = useState(false);
+
+    const [currentWordPair, setCurrentWordPair] = useState(0);
+
+    const [wordPairs, setWordPairs] = useState([]);
+
+    var fetchWordPairs = async () => {
       try {
-          console.log("Languages:", language1, language2)
-          const response = await fetch(`http://localhost:8080/api/${language1}/${language2}/randomWord`);
-          if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
+          const numberOfPairs = 5;
+          let wordPairs = [];
+  
+          for (let i = 0; i < numberOfPairs; i++) {
+              const response = await fetch(`http://localhost:8080/api/${language1abv}/${language2abv}/randomWord`);
+              
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+  
+              const data = await response.json();
+              wordPairs.push(data);
           }
-          const data = await response.json();
-          setWordPair(data);
+  
+          console.log("word pairs set");
+          return wordPairs;
       } catch (error) {
           console.error('Error fetching language data:', error);
+          return []; // Return an empty array in case of an error
       }
-    };
+  };
 
     useEffect(() => {
         let timer;
@@ -44,38 +61,53 @@ function Game() {
         return () => clearInterval(timer);
       }, [isRunning, seconds]);
     
-    const startGame = () => {
+    const startGame = async () => {
+        setIsLoadingGame(true);
+        const fetchedWordPairs = await fetchWordPairs();
+        setWordPairs(fetchedWordPairs);
         setIsRunning(true);
-        fetchWordPair();
-      };
+        setIsLoadingGame(false);
+    };
+
+    const nextWordPair = () => {
+        if(currentWordPair < 4) {
+            setCurrentWordPair(currentWordPair + 1);
+        }
+    };
 
     return (
         <div>
-           <nav>
-                {isRunning === false && (
+            <nav>
+                {isLoadingGame && (
                     <div>
-                        <h1>game {language2}</h1>
+                        <h1>Loading game...</h1>
+                    </div>
+                )}
+                {!isLoadingGame && !isRunning && (
+                    <div>
+                        <h1>game: {language2} to {language1}</h1>
                         <div className="buttons">
-                           <button class="button" onClick={startGame}>play</button>
+                            <button className="button" onClick={startGame}>
+                                play
+                            </button>
                         </div>
                     </div>
                 )}
-                {isRunning === true && (
+                {!isLoadingGame && isRunning && (
                     <div>
                         <h1>seconds remaining: {seconds}</h1>
-                        <h1>wordPair: {wordPair[0]} and {wordPair[1]}</h1>
+                        <h1>{language2}: "{wordPairs[currentWordPair][1]}" = {language1}: "_"</h1>
                         <div className="buttons">
-                          <Link to={`/statistics/${seconds}`}>finish</Link>
+                            <button className="button" onClick={nextWordPair}>next</button>
+                            <Link to={`/statistics/${seconds}`}>finish</Link>
                         </div>
                         <Outlet />
                     </div>
                 )}
-                {seconds === 0 && (
-                    navigate(`/statistics/${seconds}`)
-                )}
+                {!isLoadingGame && seconds === 0 && navigate(`/statistics/${seconds}`)}
             </nav>
         </div>
     );
-}
+};
 
 export default Game;
