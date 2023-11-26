@@ -3,7 +3,9 @@ package com.languagegame.security;
 import com.languagegame.security.jwt.AuthEntryPointJwt;
 import com.languagegame.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 @Configuration
@@ -16,5 +18,13 @@ public class WebSecurityConfig {
     private AuthEntryPointJwt unauthorisedHandler;
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter(){
+        return new AuthTokenFilter();
+    }
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(){
+
+    }
 
 }
