@@ -25,14 +25,14 @@ and vice versa.
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("$languagegame.app.jwtSecret")
+    @Value("${languagegame.app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("$languagegame.app.jwtCookieName")
+    @Value("${languagegame.app.jwtCookieName}")
     private String jwtCookie;
 
-    @Value("$languagegame.app.jwtExpirationMs")
-    private int jwtExpireationMs;
+    @Value("${languagegame.app.jwtExpirationMs}")
+    private Integer jwtExpireationMs;
 
 
     // Exceptions to catch according to JWT validation documentation

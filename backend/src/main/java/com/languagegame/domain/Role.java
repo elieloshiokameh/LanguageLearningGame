@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id; //TODO change to Long / Integer
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 15)
@@ -18,11 +18,11 @@ public class Role {
         this.type = type;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
