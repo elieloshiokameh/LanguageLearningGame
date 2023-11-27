@@ -47,6 +47,8 @@ function Game() {
       }
   };
 
+    const [userInput, setUserInput] = useState('');
+
     useEffect(() => {
         let timer;
     
@@ -75,6 +77,22 @@ function Game() {
         }
     };
 
+    const handleInputChange = (event) => {
+        setUserInput(event.target.value);
+      };
+
+    const handleEnterPress = (event) => {
+        if (event.key === 'Enter') {
+          console.log('User input:', userInput);
+          if(currentWordPair === 4) {
+            navigate(`/statistics/${seconds}`)
+          }
+          else {
+            nextWordPair();
+          }
+        }
+      };
+
     return (
         <div>
             <nav>
@@ -96,10 +114,19 @@ function Game() {
                 {!isLoadingGame && isRunning && (
                     <div>
                         <h1>seconds remaining: {seconds}</h1>
-                        <h1>{language2}: "{wordPairs[currentWordPair][1]}" = {language1}: "_"</h1>
+                        <div>
+                            <h1>{language2}: "{wordPairs[currentWordPair][1]}" = {language1}:
+                                <input
+                                type="text"
+                                placeholder="Enter your data"
+                                value={userInput}
+                                onChange={handleInputChange}
+                                onKeyDown={handleEnterPress}
+                                />
+                            </h1>
+                        </div>
                         <div className="buttons">
-                            <button className="button" onClick={nextWordPair}>next</button>
-                            <Link to={`/statistics/${seconds}`}>finish</Link>
+                          <Link to={`/statistics/${seconds}`}>finish</Link>
                         </div>
                         <Outlet />
                     </div>
