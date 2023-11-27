@@ -32,7 +32,7 @@ public class JwtUtils {
     private String jwtCookie;
 
     @Value("${languagegame.app.jwtExpirationMs}")
-    private Integer jwtExpireationMs;
+    private Integer jwtExpirationMs;
 
 
     // Exceptions to catch according to JWT validation documentation
@@ -59,7 +59,7 @@ public class JwtUtils {
 
     public String getUsernameFromJwt(String jwt) {
         return Jwts.parserBuilder().setSigningKey(key()).build()
-                .parseClaimsJwt(jwt).getBody().getSubject();
+                .parseClaimsJws(jwt).getBody().getSubject();
     }
 
     public String getJwtFromCookies(HttpServletRequest request) {
@@ -74,8 +74,8 @@ public class JwtUtils {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpireationMs))
-                .signWith(key(), SignatureAlgorithm.ES256)      //TODO: change algorithm to HS256 on any issues
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .signWith(key(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
