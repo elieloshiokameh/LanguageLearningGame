@@ -90,7 +90,7 @@ public class JwtUtils {
         return cookie;
     }
 
-    //empty cookie
+    //empty cookie, to replace current cookie when user signs out etc.
     public ResponseCookie getCleanJwtCookie(){
         return ResponseCookie.from(jwtCookie, null).path("/api").build();
     }
