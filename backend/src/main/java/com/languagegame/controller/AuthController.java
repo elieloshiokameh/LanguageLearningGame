@@ -7,6 +7,7 @@ import com.languagegame.repository.RoleRepository;
 import com.languagegame.repository.UserRepository;
 import com.languagegame.security.jwt.JwtUtils;
 import com.languagegame.security.service.UserDetailsImpl;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -18,6 +19,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 /*
     Regarding use of creating classes solely for use as parameters and return values,
@@ -69,13 +72,16 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest registerDetails) {
+    public ResponseEntity<?> registerUser(HttpServletResponse response, @Valid @RequestBody SignupRequest registerDetails) throws IOException {
         if (userRepo.existsByUsername(registerDetails.getUsername())) {
-            return ResponseEntity.badRequest().body("Error: Username is taken."); //TODO change to ResponseMessage
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Username is taken.");
+            return null;
         }
         if (userRepo.existsByEmail(registerDetails.getEmail())) {
-            return ResponseEntity.badRequest().body("Error: This Email already has an account."); //TODO change to ResponseMessage
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "This Email already has an account.");
+            return null;
         }
+
         // create user
         User user = new User(registerDetails.getUsername(),
                 registerDetails.getEmail(),
