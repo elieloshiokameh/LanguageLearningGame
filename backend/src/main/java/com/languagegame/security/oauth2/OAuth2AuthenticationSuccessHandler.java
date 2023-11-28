@@ -65,6 +65,8 @@ public class OAuth2AuthenticationSuccessHandler extends SavedRequestAwareAuthent
         ResponseCookie jsCookie = ResponseCookie.from("JSESSIONID", "").maxAge(0).path("/").build();
         response.addHeader("Set-Cookie", jsCookie.toString());
 
-        super.onAuthenticationSuccess(request, response, authentication);
+        response.sendRedirect("/authtest");
+        // processes redirect cache - but our exception handler overrides this anyway
+//        super.onAuthenticationSuccess(request, response, authentication);
     }
 }

@@ -20,6 +20,9 @@ public class TempController {
     @GetMapping("/tmp_login")
     public ResponseEntity<String> getTest2() {
         return ResponseEntity.ok("""
+                <h2>Google login</h2>
+                <a href="/oauth2/authorization/google">Login</a>
+                
                 <h2>Login Form</h2>
                         
                 <form id="loginForm">
@@ -52,6 +55,7 @@ public class TempController {
                 <button type="button" onclick="signout()">Signout</button>
                 
                 <p id="responseText"></p>
+                
                 
                 <script>
                     function submitLogin() {
