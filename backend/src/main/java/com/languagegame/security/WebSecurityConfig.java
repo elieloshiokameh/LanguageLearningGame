@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -61,18 +62,17 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .exceptionHandling(exception -> exception.accessDeniedHandler(accessDeniedHandler))
 //                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorisedHandler))
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.NEVER))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/error/**").permitAll()
-//                                .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/auth/**").permitAll()
 //                                .requestMatchers("/api/test/**").permitAll()
                                 .requestMatchers("/test2").permitAll()
                                 .anyRequest().authenticated()
                 )
-                .oauth2Login(oauth2 -> oauth2.successHandler(oauth2AuthenticationSuccessHandler))
-                .formLogin(Customizer.withDefaults());
+                .oauth2Login(oauth2 -> oauth2.successHandler(oauth2AuthenticationSuccessHandler));
 //        http.authenticationProvider(authenticationProvider());
-//        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationJwtTokenFilter(), OAuth2AuthorizationRequestRedirectFilter.class); // need this to authenticate based on just jwt
         return http.build();
     }
 }

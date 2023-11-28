@@ -41,11 +41,11 @@ public class OAuth2AuthenticationSuccessHandler extends SavedRequestAwareAuthent
         System.out.println("SUCCESS HANDLER email = " + email);
 
 
-        User user = userRepo.findByUsername(name).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
         if (user == null) {
             user = new User(name, email,"OAUTH2");
             userRepo.save(user);
-        } else if (!user.getEmail().equals(email) || !user.getPassword().equals("OAUTH2")) {
+        } else if (!user.getUsername().equals(name) || !user.getPassword().equals("OAUTH2")) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Not a valid account");
             return;
         }
@@ -61,9 +61,9 @@ public class OAuth2AuthenticationSuccessHandler extends SavedRequestAwareAuthent
         // Add our new jwt cookie
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
         response.addHeader("Set-Cookie", jwtCookie.toString());
-//        // And remove the oauth2 one!
-//        ResponseCookie jsCookie = ResponseCookie.from("JSESSION", "").maxAge(0).path("/").build();
-//        response.addHeader("Set-Cookie", jsCookie.toString());
+        // And remove the oauth2 one!
+        ResponseCookie jsCookie = ResponseCookie.from("JSESSIONID", "").maxAge(0).path("/").build();
+        response.addHeader("Set-Cookie", jsCookie.toString());
 
         super.onAuthenticationSuccess(request, response, authentication);
     }

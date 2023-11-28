@@ -70,9 +70,9 @@ public class JwtUtils {
         return null;
     }
 
-    public String generateJwtFromUsername(String username){
+    public String generateJwtFromEmail(String email){
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(key(), SignatureAlgorithm.HS256)
@@ -82,9 +82,9 @@ public class JwtUtils {
     // Where 'Principal' in Spring Security refers to the currently
     // logged-in user.
     public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal){
-        String jwt = generateJwtFromUsername(userPrincipal.getUsername());
+        String jwt = generateJwtFromEmail(userPrincipal.getEmail());
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, jwt)
-                .path("/api")
+                .path("/")
                 .maxAge(24*60*60) // 24hrs max
                 .httpOnly(true).build();
         return cookie;
