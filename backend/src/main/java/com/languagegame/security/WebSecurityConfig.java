@@ -30,7 +30,7 @@ public class WebSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // TODO change algorithm
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
