@@ -92,6 +92,6 @@ public class JwtUtils {
 
     //empty cookie, to replace current cookie when user signs out etc.
     public ResponseCookie getCleanJwtCookie(){
-        return ResponseCookie.from(jwtCookie, null).path("/api").build();
+        return ResponseCookie.from(jwtCookie, null).path("/").maxAge(0).build();
     }
 }
