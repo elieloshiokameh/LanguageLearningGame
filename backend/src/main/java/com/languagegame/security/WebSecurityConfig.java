@@ -2,6 +2,7 @@ package com.languagegame.security;
 
 import com.languagegame.security.jwt.AuthTokenFilter;
 import com.languagegame.security.jwt.AuthEntryPointJwt;
+import com.languagegame.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import com.languagegame.security.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +25,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig {
 
     @Autowired
-    private AuthEntryPointJwt unauthorisedHandler;
+    private CustomAccessDeniedHandler accessDeniedHandler;
+    @Autowired
+    private OAuth2AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler;
     @Autowired
     protected UserDetailsServiceImpl userDetailsService;
 
@@ -55,16 +58,19 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorisedHandler))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exception -> exception.accessDeniedHandler(accessDeniedHandler))
+//                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorisedHandler))
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/error/**").permitAll()
-                                .requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers("/api/test/**").permitAll()
+//                                .requestMatchers("/api/auth/**").permitAll()
+//                                .requestMatchers("/api/test/**").permitAll()
+                                .requestMatchers("/test2").permitAll()
                                 .anyRequest().authenticated()
-                );
-        http.authenticationProvider(authenticationProvider());
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+                )
+                .oauth2Login(oauth2 -> oauth2.successHandler(oauth2AuthenticationSuccessHandler));
+//        http.authenticationProvider(authenticationProvider());
+//        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
