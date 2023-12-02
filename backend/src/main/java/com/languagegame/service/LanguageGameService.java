@@ -1,13 +1,16 @@
 package com.languagegame.service;
 
-import com.languagegame.domain.Language;
-import com.languagegame.domain.TranslationResponse;
+import com.languagegame.domain.*;
+import com.languagegame.repository.PlayedGameRepository;
+import com.languagegame.security.service.UserDetailsImpl;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -19,6 +22,9 @@ public class LanguageGameService {
 
     private final Map<String, String> supportedLanguagesByCode = new HashMap<>();
     private final List<String> wordList = new ArrayList<>();
+
+    @Autowired
+    PlayedGameRepository playedGameRepository;
 
     public LanguageGameService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -97,5 +103,18 @@ public class LanguageGameService {
         }
 
         return response.getBody().getTranslatedText();
+    }
+
+
+    public void addGameStatistics(PlayedGameDTO playedGameDTO, User user) {
+        PlayedGame pg = new PlayedGame(
+                user,
+                LocalDateTime.now(),
+                playedGameDTO.getCorrect(),
+                playedGameDTO.getQuestions(),
+                playedGameDTO.getTimeRemaining()
+        );
+
+        playedGameRepository.save(pg);
     }
 }

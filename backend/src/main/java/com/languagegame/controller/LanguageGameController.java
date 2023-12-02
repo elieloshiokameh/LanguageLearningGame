@@ -1,11 +1,11 @@
 package com.languagegame.controller;
 
+import com.languagegame.domain.PlayedGameDTO;
+import com.languagegame.security.service.UserDetailsImpl;
 import com.languagegame.service.LanguageGameService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -33,5 +33,15 @@ public class LanguageGameController {
         }
 
         return ResponseEntity.ok(languageGameService.getRandomWordInLanguages(languageCode1, languageCode2));
+    }
+
+    @PostMapping("/game")
+    public ResponseEntity<?> postGameStatistics(Authentication authentication, @RequestBody PlayedGameDTO playedGameDTO) {
+        languageGameService.addGameStatistics(
+                playedGameDTO,
+                ((UserDetailsImpl) authentication.getPrincipal()).getUser()
+        );
+
+        return ResponseEntity.ok("TODO RESPONSE");
     }
 }
