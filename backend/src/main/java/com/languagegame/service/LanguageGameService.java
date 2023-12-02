@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class LanguageGameService {
@@ -116,5 +117,17 @@ public class LanguageGameService {
         );
 
         playedGameRepository.save(pg);
+    }
+
+    public StatisticsDTO getGameStatistics(User user) {
+        List<PlayedGame> playedGames = playedGameRepository.findPlayedGamesByUserOrderByPlayedAt(user);
+
+        StatisticsDTO statisticsDTO = new StatisticsDTO();
+        statisticsDTO.setCorrect(playedGames.stream().map(PlayedGame::getCorrect).collect(Collectors.toList()));
+        statisticsDTO.setQuestions(playedGames.stream().map(PlayedGame::getQuestions).collect(Collectors.toList()));
+        statisticsDTO.setTimeRemaining(playedGames.stream().map(PlayedGame::getTimeRemaining).collect(Collectors.toList()));
+        statisticsDTO.setTimePlayed(playedGames.stream().map(PlayedGame::getPlayedAt).collect(Collectors.toList()));
+
+        return statisticsDTO;
     }
 }

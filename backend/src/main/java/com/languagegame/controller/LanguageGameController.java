@@ -1,6 +1,7 @@
 package com.languagegame.controller;
 
 import com.languagegame.domain.PlayedGameDTO;
+import com.languagegame.domain.StatisticsDTO;
 import com.languagegame.security.service.UserDetailsImpl;
 import com.languagegame.service.LanguageGameService;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +44,12 @@ public class LanguageGameController {
         );
 
         return ResponseEntity.ok("TODO RESPONSE");
+    }
+
+    @GetMapping("/games")
+    public ResponseEntity<StatisticsDTO> getGameStatistics(Authentication authentication) {
+        StatisticsDTO statistics = languageGameService.getGameStatistics(((UserDetailsImpl) authentication.getPrincipal()).getUser());
+
+        return ResponseEntity.ok(statistics);
     }
 }
