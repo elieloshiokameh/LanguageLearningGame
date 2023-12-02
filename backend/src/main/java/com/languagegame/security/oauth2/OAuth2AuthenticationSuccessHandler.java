@@ -40,6 +40,11 @@ public class OAuth2AuthenticationSuccessHandler extends SavedRequestAwareAuthent
         System.out.println("SUCCESS HANDLER name = " + name);
         System.out.println("SUCCESS HANDLER email = " + email);
 
+        // TODO: Implement email fetch from https://api.github.com/user/emails
+        if(email == null){
+            //System.out.println("!!!!!!!!!!!!!!! CANT FIND EMAIL !!!!!!!!!!!!!!!!!!!!1");
+            email = name + "@unknown.unknown";
+        }
 
         User user = userRepo.findByEmail(email).orElse(null);
         if (user == null) {

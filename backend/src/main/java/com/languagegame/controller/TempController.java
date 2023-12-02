@@ -23,6 +23,9 @@ public class TempController {
                 <h2>Google login</h2>
                 <a href="/oauth2/authorization/google">Login</a>
                 
+                <h2>Github login</h2>
+                <a href="/oauth2/authorization/github">Login</a>
+                
                 <h2>Login Form</h2>
                         
                 <form id="loginForm">
