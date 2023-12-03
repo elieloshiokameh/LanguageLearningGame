@@ -28,7 +28,7 @@ import java.io.IOException;
     the classes to JSON, hence the gross code
  */
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true") //deny cross origin requests older than 1hr
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true") //deny cross origin requests older than 1hr
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
