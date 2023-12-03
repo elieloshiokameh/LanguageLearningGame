@@ -81,15 +81,33 @@ function Game() {
         setUserInput(event.target.value);
       };
 
+    const [answers, setAnswers] = useState([]);
+
+    useEffect(() => {
+        if (answers.length === 5) {
+            let count = 0;
+            for(let i = 0; i < wordPairs.length; i++) {
+                let resp = answers[i];
+                let ans = wordPairs[i][0];
+                resp = resp.toLowerCase();
+                ans = ans.toLowerCase();
+                if(resp === ans) {
+                    count = count + 1;
+                }
+                else {
+                    console.log("Incorrect");
+                }
+            }
+            navigate(`/statistics/${seconds}/${count}`);
+          }
+      }, [answers]);
+
     const handleEnterPress = (event) => {
         if (event.key === 'Enter') {
           console.log('User input:', userInput);
-          if(currentWordPair === 4) {
-            navigate(`/statistics/${seconds}`)
-          }
-          else {
-            nextWordPair();
-          }
+      
+          setAnswers(answers => [...answers, userInput])
+          nextWordPair();
         }
       };
 
