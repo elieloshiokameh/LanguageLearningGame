@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 
 function Statistics() {
 
-    const [stats, setStats] = useState(null);
+    const [stats, setStats] = useState([]);
+    const [isValidTable, setTable] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -16,6 +17,7 @@ function Statistics() {
             const data = await response.json();
             setStats(data);
             console.log("data being fetched:", data);
+            setTable(true);
         } catch (error) {
             console.error('Error fetching games data:', error);
         }
@@ -23,14 +25,11 @@ function Statistics() {
         fetchData();
     }, []);
 
-    const printGameData = () => {
-        console.table(stats, ['correct', 'questions', 'timeRemaining', 'timePlayed']);
-      };
-
     return (
         <div>
            <nav className="menu">
                 <h1>Statistics</h1>
+                {isValidTable && (
                 <table className="stats-table">
                     <thead>
                         <tr>
@@ -51,6 +50,7 @@ function Statistics() {
                         ))}
                     </tbody>
                 </table>
+                )}
                 <div className="buttons">
                     <Link to="/languageselect">Play again</Link>
                     <Link to="/">Menu</Link>
