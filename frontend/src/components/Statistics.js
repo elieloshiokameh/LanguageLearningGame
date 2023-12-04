@@ -5,8 +5,8 @@ function Statistics() {
 
     return (
         <div>
-           <nav>
-                <h1>Stats</h1>
+           <nav className="menu">
+                <h1>Statistics</h1>
                 <div className="buttons">
                     <Link to="/">menu</Link>
                 </div>

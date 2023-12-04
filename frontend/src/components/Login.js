@@ -17,7 +17,7 @@ function Login() {
 
     return (
         <div>
-            <nav>
+            <nav className="menu">
                 <div id="signInButton">
                     <GoogleLogin
                         clientId = {clientId}

@@ -39,6 +39,57 @@ a:hover, a:active {
 }
 
 .buttons {
-  padding: 20px;
+  padding-block: 20px;
   display: inline-block;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.language-select {
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+.game-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.game-body {
+  height: 20vh;
+  width: 80vh;
+  border: 1px solid black;
+  display: flex;
+  padding: 20px;
+}
+
+.game-box {
+  text-align: center;
+  padding: 5px;
+  width: 40vh;
+}
+
+.game-input {
+  padding: 5px;
+}
+
+input {
+  padding: 5px;
+}
+
+.game-seconds {
+  height: 10vh;
+  width: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

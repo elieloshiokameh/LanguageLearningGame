@@ -108,6 +108,7 @@ function Game() {
       
           setAnswers(answers => [...answers, userInput])
           nextWordPair();
+          setUserInput("");
         }
       };
 
@@ -115,13 +116,13 @@ function Game() {
         <div>
             <nav>
                 {isLoadingGame && (
-                    <div>
+                    <div className="game-menu">
                         <h1>Loading game...</h1>
                     </div>
                 )}
                 {!isLoadingGame && !isRunning && (
-                    <div>
-                        <h1>game: {language2} to {language1}</h1>
+                    <div className="game-menu">
+                        <h1>{language2} to {language1}</h1>
                         <div className="buttons">
                             <button className="button" onClick={startGame}>
                                 play
@@ -130,26 +131,35 @@ function Game() {
                     </div>
                 )}
                 {!isLoadingGame && isRunning && (
-                    <div>
-                        <h1>seconds remaining: {seconds}</h1>
-                        <div>
-                            <h1>{language2}: "{wordPairs[currentWordPair][1]}" = {language1}:
-                                <input
-                                type="text"
-                                placeholder="Enter your data"
-                                value={userInput}
-                                onChange={handleInputChange}
-                                onKeyDown={handleEnterPress}
-                                />
-                            </h1>
+                    <div className="game-menu">
+                        <div className="game-seconds">
+                            <h1>{seconds}</h1>
+                        </div>
+                        <div className="game-body">
+                            <div className="game-box">
+                                <h1>{language2}</h1>
+                                <h1>"{wordPairs[currentWordPair][1]}"</h1>
+                            </div>
+                            <div className="game-box">
+                                <h1>{language1}</h1>
+                                <div className="game-input">
+                                    <input
+                                        type="text"
+                                        placeholder="Enter your data"
+                                        value={userInput}
+                                        onChange={handleInputChange}
+                                        onKeyDown={handleEnterPress}
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div className="buttons">
-                          <Link to={`/statistics/${seconds}`}>finish</Link>
+                          <Link to={`/statistics/${seconds}/0`}>quit</Link>
                         </div>
                         <Outlet />
                     </div>
                 )}
-                {!isLoadingGame && seconds === 0 && navigate(`/statistics/${seconds}`)}
+                {!isLoadingGame && seconds === 0 && navigate(`/statistics/${seconds}/0`)}
             </nav>
         </div>
     );

@@ -25,9 +25,9 @@ function Languageselect() {
 
     return (
         <div>
-            <nav>
+            <nav className="menu">
                 <h1>Language Select</h1>
-                <div>
+                <div className="language-select">
                     {languages ? 
                         <div>
                             {Object.entries(languages).map(([abv, name]) => (
