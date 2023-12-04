@@ -108,3 +108,9 @@ input {
   padding: 10px;
   border: 1px solid black;
 }
+
+table{
+  overflow-y:scroll;
+  height:80vh;
+  display:block;
+}
