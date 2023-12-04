@@ -7,6 +7,8 @@ public class StatisticsDTO {
     List<Integer> correct;
     List<Integer> questions;
     List<Integer> timeRemaining;
+    List<String> questionLanguages;
+    List<String> answerLanguages;
 
     List<LocalDateTime> timePlayed;
 
@@ -40,5 +42,21 @@ public class StatisticsDTO {
 
     public void setTimePlayed(List<LocalDateTime> timePlayed) {
         this.timePlayed = timePlayed;
+    }
+
+    public List<String> getQuestionLanguages() {
+        return questionLanguages;
+    }
+
+    public void setQuestionLanguages(List<String> questionLanguages) {
+        this.questionLanguages = questionLanguages;
+    }
+
+    public List<String> getAnswerLanguages() {
+        return answerLanguages;
+    }
+
+    public void setAnswerLanguages(List<String> answerLanguages) {
+        this.answerLanguages = answerLanguages;
     }
 }

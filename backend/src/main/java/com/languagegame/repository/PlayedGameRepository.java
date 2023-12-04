@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface PlayedGameRepository extends JpaRepository<PlayedGame, Long> {
     List<PlayedGame> findPlayedGamesByUserOrderByPlayedAt(User user);
+
+    // now this is what I call a method name
+    List<PlayedGame> findPlayedGamesByUserAndQuestionLanguageAndAnswerLanguageOrderByPlayedAt(User user, String questionLanguage, String answerLanguage);
 }
