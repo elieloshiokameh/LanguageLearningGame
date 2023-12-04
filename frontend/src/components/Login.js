@@ -18,21 +18,9 @@ function Login() {
     return (
         <div>
             <nav className="menu">
-                <div id="signInButton">
-                    <GoogleLogin
-                        clientId = {clientId}
-                        buttonText="Login"
-                        onSuccess={onSuccess}
-                        onFailure={onFailure}
-                        cookiePolicy={'single_host_origin'}
-                        isSignedIn={true}
-                    />
-                    <Logout />
-
-                </div>
                 <div className="buttons">
-                    <Link to="/languageselect">continue</Link>
-                    <Link to="/">menu</Link>
+                    <a href="http://localhost:8080/oauth2/authorization/google">Login</a>
+                    <Link to="/">Menu</Link>
                 </div>
             </nav>
             <Outlet />

@@ -29,7 +29,7 @@ function Game() {
           let wordPairs = [];
   
           for (let i = 0; i < numberOfPairs; i++) {
-              const response = await fetch(`http://localhost:8080/api/${language1abv}/${language2abv}/randomWord`);
+              const response = await fetch(`http://localhost:8080/api/${language1abv}/${language2abv}/randomWord`, {credentials:'include'});
               
               if (!response.ok) {
                   throw new Error(`HTTP error! Status: ${response.status}`);
@@ -84,6 +84,17 @@ function Game() {
     const [answers, setAnswers] = useState([]);
 
     useEffect(() => {
+
+        const submitStats = async (count) => {
+            try {
+                console.log("count being posted: ", count);
+                console.log("seconds being posted: ", seconds);
+                fetch('http://localhost:8080/api/game', {method: 'POST', credentials: 'include', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({correct:count,questions:5,timeRemaining:seconds})}).then(r => r.text()).then(b => console.log(b))
+            } catch (error) {
+                console.error('Error submitting game data:', error);
+            }
+        };
+
         if (answers.length === 5) {
             let count = 0;
             for(let i = 0; i < wordPairs.length; i++) {
@@ -98,6 +109,7 @@ function Game() {
                     console.log("Incorrect");
                 }
             }
+            submitStats(count);
             navigate(`/statistics/${seconds}/${count}`);
           }
       }, [answers]);

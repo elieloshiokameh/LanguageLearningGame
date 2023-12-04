@@ -10,7 +10,7 @@ function Languageselect() {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/languages');
+            const response = await fetch('http://localhost:8080/api/languages',{credentials: 'include'});
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }

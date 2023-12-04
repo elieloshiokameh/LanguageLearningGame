@@ -93,3 +93,18 @@ input {
   align-items: center;
   justify-content: center;
 }
+
+.stats-table {
+  background-color: lightgray;
+  border: 1px solid black;
+}
+
+.stats-table th {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.stats-table td {
+  padding: 10px;
+  border: 1px solid black;
+}
