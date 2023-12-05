@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -88,11 +89,13 @@ public class WebSecurityConfig {
                                 .requestMatchers("/api/auth/**").permitAll()
 //                                .requestMatchers("/api/test/**").permitAll()
                                 .requestMatchers("/tmp_login").permitAll()
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()//.authenticated() // Users unable to access React pages anyway
                 )
+                .addFilterAfter(new ReactWebFilter(), BasicAuthenticationFilter.class) // React pages handler
                 .oauth2Login(oauth2 -> oauth2.successHandler(oauth2AuthenticationSuccessHandler));
 //        http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), OAuth2AuthorizationRequestRedirectFilter.class); // need this to authenticate based on just jwt
+
         return http.build();
     }
 }
