@@ -7,7 +7,7 @@ function Menu() {
             <nav className="menu">
                 <h1>Group 10's Language Learning Game</h1>
                 <div className="buttons">
-                    <a href="http://localhost:8080/oauth2/authorization/google">Login</a>
+                    <a href="/oauth2/authorization/google">Login</a>
                 </div>
             </nav>
             <Outlet />

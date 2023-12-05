@@ -29,7 +29,7 @@ function Game() {
           let wordPairs = [];
   
           for (let i = 0; i < numberOfPairs; i++) {
-              const response = await fetch(`http://localhost:8080/api/${language1abv}/${language2abv}/randomWord`, {credentials:'include'});
+              const response = await fetch(`/api/${language1abv}/${language2abv}/randomWord`, {credentials:'include'});
               
               if (!response.ok) {
                   throw new Error(`HTTP error! Status: ${response.status}`);
@@ -89,7 +89,7 @@ function Game() {
             try {
                 console.log("count being posted: ", count);
                 console.log("seconds being posted: ", seconds);
-                fetch('http://localhost:8080/api/game',
+                fetch('/api/game',
                     {method: 'POST',
                         credentials: 'include',
                         headers: {'Content-Type': 'application/json'},

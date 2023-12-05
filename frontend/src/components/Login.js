@@ -19,7 +19,7 @@ function Login() {
         <div>
             <nav className="menu">
                 <div className="buttons">
-                    <a href="http://localhost:8080/oauth2/authorization/google">Login</a>
+                    <a href="https://practice-languages.fly.dev/authorization/google">Login</a>
                     <Link to="/">Menu</Link>
                 </div>
             </nav>

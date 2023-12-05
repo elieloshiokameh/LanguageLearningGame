@@ -10,7 +10,7 @@ function Statistics() {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/games',{credentials: 'include'});
+            const response = await fetch('/api/games',{credentials: 'include'});
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
