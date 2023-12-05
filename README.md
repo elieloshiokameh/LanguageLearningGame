@@ -1,92 +1,205 @@
-# Practice Languages API
+<a name="readme-top"></a>
+
+
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+
+  <h3 align="center">Language Practice game</h3>
+
+  <p align="center">
+    Made for CSU33012 Software Engineering
+    <br />
+    <a href="https://media.heanet.ie/page/76efd0fbe4d146269e1370a384c0e62e">View Demo</a> 
+    ·
+    <a href="https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api/-/issues">Report Bug</a>
+    ·
+    <a href="https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api/-/issues">Request Feature</a>
+  </p>
+</div>
 
 
 
-## Getting started
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+      <ul>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </li>
+    <li>
+      <ul>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#diary">Diary</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+  </ol>
+</details>
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+[![Watch the video](app-video.png)](https://media.heanet.ie/page/76efd0fbe4d146269e1370a384c0e62e)
 
-```
-cd existing_repo
-git remote add origin https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api.git
-git branch -M main
-git push -uf origin main
-```
+### Both backend and frontend (2 videos) are covered within 1 video
 
-## Integrate with your tools
+[Language Practice game](https://practice-languages.fly.dev)
 
-- [ ] [Set up project integrations](https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api/-/settings/integrations)
+Language Practicing game made by Software Engineering Group 1
 
-## Collaborate with your team
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
 
-## Test and Deploy
+### Built With
 
-Use the built-in continuous integration in GitLab.
+* Spring Boot
+* [![React][React.js]][React-url]
+* Spring Security
+* Maven
+* MySQL
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
 
-***
+## Features
 
-# Editing this README
+- CRUD
+- Login
+- Authentication
+- Responsive
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Requirements
 
-## Name
-Choose a self-explaining name for your project.
+For building and running the application you need:
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- [JDK 17.0](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [Maven 4](https://maven.apache.org)
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```
+$ git clone https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api.git
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+$ cd practice-languages-api
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```
 
+Then create a database with name MYSQL69 in your mysql. Can be done manually through workbench etc.
+
+However our choice is through Docker
+
+```
+$ docker run --name sweng-languagegame-db -p 3306:3306 -e MYSQL_DATABASE=MYSQL69 -e MYSQL_ROOT_PASSWORD=securepassword -d mysql
+
+```
+
+If database is having trouble connecting open the file "src/main/java/resources/application.properties" and make sure the data is 
+properly set according to the database.
+
+When database is properly configured run maven to build the project, and package it into one application.
+
+```
+$ mvn clean install
+```
+
+
+Now, we're ready to start the application. Make sure you quit any running servers, and run the jar file
+
+```
+$ java -jar target/languagegame-0.0.1-SNAPSHOT.jar
+
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.1.RELEASE)
+
+2023-04-11 11:53:44.983  INFO 93434 --- [           main] n.k.s.LanguagePractice                   : Starting LanguagePractice v0.0.1-SNAPSHOT on oven.local with PID 93434 (/Users/oven/git/practice-languages-api/target/languagegame-0.0.1-SNAPSHOT.jar started by oven in /Users/oven/git/practice-languages-api)
+2023-04-11 11:53:44.986  INFO 93434 --- [           main] n.k.s.LanguagePractice                   : No active profile set, falling back to default profiles: default
+2023-04-11 11:53:45.045  INFO 93434 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5af3afd9: startup date [Wed Apr 11 11:53:45 CEST 2023]; root of context hierarchy
+2023-04-11 11:53:46.180  INFO 93434 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-11 11:53:46.221  INFO 93434 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-11 11:53:46.222  INFO 93434 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+[...]
+2023-04-11 11:53:47.039  INFO 93434 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+[...]
+```
+
+
+Open your web browser, and navigate to http://localhost:8080. You should now see the following:
+
+![spring boot with react](initial_screen.png)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- Diary -->
+## Diary
+
+- Week 1 entry design decisions:
+* We met up as a group for the first time and tried brainstorming for ideas. We were able to come up with a good few choices but not any definitive easy choices,
+hence we went for the democratic option of everyone voting via ranking the choices in the order of their favourites.
+
+* We eventually chose our current idea yet then found out it would be hard to decide on how to get input from user since like if we were to have a language translate to some other language, meanings may be lost in translation. On top of that, how would we change the language of the entire program, to instruct a person of a different native language on
+how to choose language options ?
+
+- Week 2 entry design decisions:
+* Although our members had some experience with Spring Boot, almost noone had experience with React.js, and we found it difficult to pass components, design a single page application and efficiently make use of useState.
+  
+* We found out that utilising the translation API, the speed of certain languages (with things such as translating, fetching etc.) were faster than others for reasons unknown to our implementation. 
+  
+- Week 3 entry design decisions:
+* Some of the word pairs returned from the our language translation API, Libre Language API, would return word pairs where multiple translations of the same word to English existed.  This made handling word pairs in the Game non trivial, and brought up much meaningful discussion regarding the implementation of the game.
+  
+* When we met with the topic of Authenticating, we wanted all types of authentication to be done the same way. This meaning that a normal Account register and login would be done via entering Account details, then as an Authentication token,  a Json Web Token (JWT) is returned. However when implementing further types of Authentication such as Open Authorisation 2 (OAuth2) via platforms like Google, and Github, they would authenticate and return different tokens, such as Custom Authentication tokens, or JSESSIONID's. This led to the difficult task of taking in these different types of Authentication tokens and "transforming" it into our stylised JWT's.
+
+- Week 4 entry design decisions:
+* We have run into the problem of our group lacking manpower towards the end of the project, with less and less being accomplished, while there was still plenty of work to do. This was due to a multitude of Assignments slowly encroaching upon us with deadlines back to back. This led to the team of effective working members on either the frontend and backend team to fall to an average of 1 - 2 members.
+  
+* The backend team has run into a massive conundrum with features being unable to properly display their potential due to Cross-Origin Resource Sharing (CORS) issues. this led to sleepless nights of little productivity, with a fix being merely a couple lines of code. However at least it has been resolved
+  UPDATE: The deadline is nigh, and the horrors of CORS has returned. Unfortunately we have left our [WebPage](https://practice-languages.fly.dev) of a single CORS issue, however it is a fatal one blocking our single POST request used for displaying user statistics.
+
+
+<!-- Contributed -->
 ## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Ramy El-Sherbiny - elsherbr@tcd.ie
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Daniel Padmore  - padmored@tcd.ie
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Daniel Farushev - farushed@tcd.ie
 
-## License
-For open source projects, say how it is licensed.
+Eliel Oshiokameh - oshiokae@tcd.ie
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Nandini Gupta - nagupta@tcd.ie
+
+Project Link: [https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api](https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+[React-url]: https://reactjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB

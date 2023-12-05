@@ -44,9 +44,9 @@ public class OAuth2AuthenticationSuccessHandler extends SavedRequestAwareAuthent
         String login = ((OAuth2User) authentication.getPrincipal()).getAttribute("login");
         if(name == null && login != null){
             name = login;
-        }
-        else{
-            name = "unknown";
+            if(login == null){
+                name = "unknown";
+            }
         }
         if(email == null){
             //System.out.println("!!!!!!!!!!!!!!! CANT FIND EMAIL !!!!!!!!!!!!!!!!!!!!1");
@@ -77,7 +77,7 @@ public class OAuth2AuthenticationSuccessHandler extends SavedRequestAwareAuthent
         ResponseCookie jsCookie = ResponseCookie.from("JSESSIONID", "").maxAge(0).path("/").build();
         response.addHeader("Set-Cookie", jsCookie.toString());
 
-        response.sendRedirect(request.getContextPath() + "/languageselect");
+        response.sendRedirect("/languageselect");
         // processes redirect cache - but our exception handler overrides this anyway
 //        super.onAuthenticationSuccess(request, response, authentication);
     }

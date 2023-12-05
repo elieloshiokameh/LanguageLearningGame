@@ -19,8 +19,8 @@ function Login() {
         <div>
             <nav className="menu">
                 <div className="buttons">
-                    {/*<a href="/authorization/google">Login Google</a>*/}
-                    <a href="/oauth2/authorization/github">Login Github</a>
+                    <a href="oauth2/authorization/google">Login Google</a>
+                    {/*<a href="/oauth2/authorization/github">Login Github</a>*/}
                     <Link to="/">Menu</Link>
                 </div>
             </nav>

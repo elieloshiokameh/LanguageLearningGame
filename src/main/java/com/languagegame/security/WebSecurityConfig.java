@@ -66,10 +66,9 @@ public class WebSecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*","https://practice-languages.fly.dev", "http://practice-languages.fly.dev",
-                "http://practice-languages.fly.dev/**", "https://practice-languages.fly.dev/**","http://localhost:3000"));
-        configuration.setAllowedMethods(List.of("*","POST","GET","OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*","Content-Type")); // Fixes preflight requests
+        configuration.setAllowedOrigins(List.of( "http://localhost:8080"));
+        configuration.setAllowedMethods(List.of("POST","GET","OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Content-Type")); // Fixes preflight requests
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
@@ -88,8 +87,8 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.NEVER))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/error/**").permitAll()
-                                .requestMatchers("/api/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/**").permitAll()
 //                                .requestMatchers("/api/test/**").permitAll()
                                 .requestMatchers("/tmp_login").permitAll()
                                 .anyRequest().permitAll()//.authenticated() // Users unable to access React pages anyway
