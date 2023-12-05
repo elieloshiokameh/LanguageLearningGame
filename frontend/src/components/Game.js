@@ -89,7 +89,15 @@ function Game() {
             try {
                 console.log("count being posted: ", count);
                 console.log("seconds being posted: ", seconds);
-                fetch('http://localhost:8080/api/game', {method: 'POST', credentials: 'include', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({correct:count,questions:5,timeRemaining:seconds})}).then(r => r.text()).then(b => console.log(b))
+                fetch('http://localhost:8080/api/game',
+                    {method: 'POST',
+                        credentials: 'include',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(
+                            {correct:count, questions:5, timeRemaining:seconds, answerLanguage:language2abv, questionLanguage:language1abv})
+                    })
+                    .then(r => r.text())
+                    .then(b => console.log(b))
             } catch (error) {
                 console.error('Error submitting game data:', error);
             }
