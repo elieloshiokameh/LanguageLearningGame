@@ -24,7 +24,7 @@
   <p align="center">
     Made for CSU33012 Software Engineering
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a> 
+    <a href="https://media.heanet.ie/page/76efd0fbe4d146269e1370a384c0e62e">View Demo</a> 
     ·
     <a href="https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api/-/issues">Report Bug</a>
     ·
@@ -43,20 +43,18 @@
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
+      <ul>
+        <li><a href="#features">Features</a></li>
+      </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#requirements">Requirements</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#diary">Diary</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -65,7 +63,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://practice-languages.fly.dev)
+[![Watch the video](app-video.png)](https://media.heanet.ie/page/76efd0fbe4d146269e1370a384c0e62e)
+
+### Both backend and frontend (2 videos) are covered within 1 video
+
+[Language Practice game](https://practice-languages.fly.dev)
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
@@ -84,11 +86,11 @@ Of course, no one template will serve all projects since your needs may be diffe
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Spring]]
-* [![Spring Boot]]
-* [![Spring Security]]
+* Spring Boot
 * [![React][React.js]][React-url]
-
+* Spring Security
+* Maven
+* MySQL
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -169,11 +171,45 @@ Open your web browser, and navigate to http://localhost:8080. You should now see
 
 
 
+<!-- Diary -->
+## Diary
 
-<!-- CONTACT -->
-## Contact
+- Week 1 entry design decisions:
+* We met up as a group for the first time and tried brainstorming for ideas. We were able to come up with a good few choices but not any definitive easy choices,
+hence we went for the democratic option of everyone voting via ranking the choices in the order of their favourites.
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+* We eventually chose our current idea yet then found out it would be hard to decide on how to get input from user since like if we were to have a language translate to some other language, meanings may be lost in translation. On top of that, how would we change the language of the entire program, to instruct a person of a different native language on
+how to choose language options ?
+
+- Week 2 entry design decisions:
+* Although our members had some experience with Spring Boot, almost noone had experience with React.js, and we found it difficult to pass components, design a single page application and efficiently make use of useState.
+  
+* We found out that utilising the translation API, the speed of certain languages (with things such as translating, fetching etc.) were faster than others for reasons unknown to our implementation. 
+  
+- Week 3 entry design decisions:
+* Some of the word pairs returned from the our language translation API, Libre Language API, would return word pairs where multiple translations of the same word to English existed.  This made handling word pairs in the Game non trivial, and brought up much meaningful discussion regarding the implementation of the game.
+  
+* When we met with the topic of Authenticating, we wanted all types of authentication to be done the same way. This meaning that a normal Account register and login would be done via entering Account details, then as an Authentication token,  a Json Web Token (JWT) is returned. However when implementing further types of Authentication such as Open Authorisation 2 (OAuth2) via platforms like Google, and Github, they would authenticate and return different tokens, such as Custom Authentication tokens, or JSESSIONID's. This led to the difficult task of taking in these different types of Authentication tokens and "transforming" it into our stylised JWT's.
+
+- Week 4 entry design decisions:
+* We have run into the problem of our group lacking manpower towards the end of the project, with less and less being accomplished, while there was still plenty of work to do. This was due to a multitude of Assignments slowly encroaching upon us with deadlines back to back. This led to the team of effective working members on either the frontend and backend team to fall to an average of 1 - 2 members.
+  
+* The backend team has run into a massive conundrum with features being unable to properly display their potential due to Cross-Origin Resource Sharing (CORS) issues. this led to sleepless nights of little productivity, with a fix being merely a couple lines of code. However at least it has been resolved
+  UPDATE: The deadline is nigh, and the horrors of CORS has returned. Unfortunately we have left our [WebPage](https://practice-languages.fly.dev) of a single CORS issue, however it is a fatal one blocking our single POST request used for displaying user statistics.
+
+
+<!-- Contributed -->
+## Contributing
+
+Ramy El-Sherbiny - elsherbr@tcd.ie
+
+Daniel Padmore  - padmored@tcd.ie
+
+Daniel Farushev - farushed@tcd.ie
+
+Eliel Oshiokameh - oshiokae@tcd.ie
+
+Nandini Gupta - nagupta@tcd.ie
 
 Project Link: [https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api](https://gitlab.scss.tcd.ie/elsherbr/practice-languages-api)
 
