@@ -15,7 +15,6 @@ a:link, a:visited {
   text-align: center;
   text-decoration: none;
   font-size: medium;
-  display: inline-block;
 }
 
 a:hover, a:active {
@@ -31,7 +30,6 @@ a:hover, a:active {
   text-align: center;
   text-decoration: none;
   font-size: medium;
-  display: inline-block;
 }
 
 .button:hover {
@@ -41,5 +39,78 @@ a:hover, a:active {
 }
 
 .buttons {
+  padding-block: 20px;
+  display: inline-block;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.language-select {
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+.game-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.game-body {
+  height: 20vh;
+  width: 80vh;
+  border: 1px solid black;
+  display: flex;
+  padding: 20px;
+}
+
+.game-box {
+  text-align: center;
+  padding: 5px;
+  width: 40vh;
+}
+
+.game-input {
+  padding: 5px;
+}
+
+input {
+  padding: 5px;
+}
+
+.game-seconds {
+  height: 10vh;
+  width: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-table {
+  background-color: lightgray;
+  border: 1px solid black;
+}
+
+.stats-table th {
   padding: 10px;
+  border: 1px solid black;
+}
+
+.stats-table td {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+table{
+  overflow-y:scroll;
+  height:80vh;
+  display:block;
 }

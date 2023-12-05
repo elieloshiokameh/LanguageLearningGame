@@ -17,22 +17,11 @@ function Login() {
 
     return (
         <div>
-            <nav>
-                <div id="signInButton">
-                    <GoogleLogin
-                        clientId = {clientId}
-                        buttonText="Login"
-                        onSuccess={onSuccess}
-                        onFailure={onFailure}
-                        cookiePolicy={'single_host_origin'}
-                        isSignedIn={true}
-                    />
-                    <Logout />
-
-                </div>
+            <nav className="menu">
                 <div className="buttons">
-                    <Link to="/languageselect">continue</Link>
-                    <Link to="/">menu</Link>
+                    {/*<a href="/authorization/google">Login Google</a>*/}
+                    <a href="/oauth2/authorization/github">Login Github</a>
+                    <Link to="/">Menu</Link>
                 </div>
             </nav>
             <Outlet />

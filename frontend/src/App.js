@@ -18,8 +18,8 @@ export default function App() {
             <Route index element={<Menu />} />
             <Route path="login" element={<Login />} />
             <Route path="languageselect" element={<Languageselect />} />
-            <Route path="game/:flag" element={<Game />} />
-            <Route path="statistics/:seconds" element={<Statistics />} />
+            <Route path="game/:language1abv/:language1/:language2abv/:language2" element={<Game />} />
+            <Route path="statistics/:seconds/:correct" element={<Statistics />} />
             <Route path="*" element={<Nopage />} />
           </Route>
         </Routes>

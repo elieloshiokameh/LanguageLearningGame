@@ -8,10 +8,46 @@ function Game() {
 
     const navigate = useNavigate();
 
-    const { flag } = useParams();
+    const { language1abv } = useParams();
+    const { language2abv } = useParams();
 
-    const [seconds, setSeconds] = useState(5);
+    const { language1 } = useParams();
+    const { language2 } = useParams();
+
+    const [seconds, setSeconds] = useState(60);
     const [isRunning, setIsRunning] = useState(false);
+
+    const [isLoadingGame, setIsLoadingGame] = useState(false);
+
+    const [currentWordPair, setCurrentWordPair] = useState(0);
+
+    const [wordPairs, setWordPairs] = useState([]);
+
+    var fetchWordPairs = async () => {
+      try {
+          const numberOfPairs = 5;
+          let wordPairs = [];
+  
+          for (let i = 0; i < numberOfPairs; i++) {
+              const response = await fetch(`/api/${language1abv}/${language2abv}/randomWord`, {credentials:'include'});
+              
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+  
+              const data = await response.json();
+              wordPairs.push(data);
+          }
+  
+          console.log("word pairs set");
+          return wordPairs;
+      } catch (error) {
+          console.error('Error fetching language data:', error);
+          return []; // Return an empty array in case of an error
+      }
+  };
+
+    const [userInput, setUserInput] = useState('');
 
     useEffect(() => {
         let timer;
@@ -27,36 +63,126 @@ function Game() {
         return () => clearInterval(timer);
       }, [isRunning, seconds]);
     
-    const startGame = () => {
+    const startGame = async () => {
+        setIsLoadingGame(true);
+        const fetchedWordPairs = await fetchWordPairs();
+        setWordPairs(fetchedWordPairs);
         setIsRunning(true);
+        setIsLoadingGame(false);
+    };
+
+    const nextWordPair = () => {
+        if(currentWordPair < 4) {
+            setCurrentWordPair(currentWordPair + 1);
+        }
+    };
+
+    const handleInputChange = (event) => {
+        setUserInput(event.target.value);
+      };
+
+    const [answers, setAnswers] = useState([]);
+
+    useEffect(() => {
+
+        const submitStats = async (count) => {
+            try {
+                console.log("count being posted: ", count);
+                console.log("seconds being posted: ", seconds);
+                fetch("/api/game",
+                    {method: 'POST',
+                        credentials: 'include',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(
+                            {correct:count, questions:5, timeRemaining:seconds, answerLanguage:language2abv, questionLanguage:language1abv})
+                    })
+                    .then(r => r.text())
+                    .then(b => console.log(b))
+            } catch (error) {
+                console.error('Error submitting game data:', error);
+            }
+        };
+
+        if (answers.length === 5) {
+            let count = 0;
+            for(let i = 0; i < wordPairs.length; i++) {
+                let resp = answers[i];
+                let ans = wordPairs[i][0];
+                resp = resp.toLowerCase();
+                ans = ans.toLowerCase();
+                if(resp === ans) {
+                    count = count + 1;
+                }
+                else {
+                    console.log("Incorrect");
+                }
+            }
+            submitStats(count);
+            navigate(`/statistics/${seconds}/${count}`);
+          }
+      }, [answers]);
+
+    const handleEnterPress = (event) => {
+        if (event.key === 'Enter') {
+          console.log('User input:', userInput);
+      
+          setAnswers(answers => [...answers, userInput])
+          nextWordPair();
+          setUserInput("");
+        }
       };
 
     return (
         <div>
-           <nav>
-                {isRunning === false && (
-                    <div>
-                        <h1>game {flag}</h1>
+            <nav>
+                {isLoadingGame && (
+                    <div className="game-menu">
+                        <h1>Loading game...</h1>
+                    </div>
+                )}
+                {!isLoadingGame && !isRunning && (
+                    <div className="game-menu">
+                        <h1>{language2} to {language1}</h1>
                         <div className="buttons">
-                           <button class="button" onClick={startGame}>play</button>
+                            <button className="button" onClick={startGame}>
+                                play
+                            </button>
                         </div>
                     </div>
                 )}
-                {isRunning === true && (
-                    <div>
-                        <h1>{seconds}</h1>
+                {!isLoadingGame && isRunning && (
+                    <div className="game-menu">
+                        <div className="game-seconds">
+                            <h1>{seconds}</h1>
+                        </div>
+                        <div className="game-body">
+                            <div className="game-box">
+                                <h1>{language2}</h1>
+                                <h1>"{wordPairs[currentWordPair][1]}"</h1>
+                            </div>
+                            <div className="game-box">
+                                <h1>{language1}</h1>
+                                <div className="game-input">
+                                    <input
+                                        type="text"
+                                        placeholder="Enter your data"
+                                        value={userInput}
+                                        onChange={handleInputChange}
+                                        onKeyDown={handleEnterPress}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                         <div className="buttons">
-                          <Link to={`/statistics/${seconds}`}>finish</Link>
+                          <Link to={`/statistics/${seconds}/0`}>quit</Link>
                         </div>
                         <Outlet />
                     </div>
                 )}
-                {seconds === 0 && (
-                    navigate(`/statistics/${seconds}`)
-                )}
+                {!isLoadingGame && seconds === 0 && navigate(`/statistics/${seconds}/0`)}
             </nav>
         </div>
     );
-}
+};
 
 export default Game;
