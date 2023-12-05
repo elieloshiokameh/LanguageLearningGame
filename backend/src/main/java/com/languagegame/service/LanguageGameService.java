@@ -2,7 +2,6 @@ package com.languagegame.service;
 
 import com.languagegame.domain.*;
 import com.languagegame.repository.PlayedGameRepository;
-import com.languagegame.security.service.UserDetailsImpl;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -113,7 +112,9 @@ public class LanguageGameService {
                 LocalDateTime.now(),
                 playedGameDTO.getCorrect(),
                 playedGameDTO.getQuestions(),
-                playedGameDTO.getTimeRemaining()
+                playedGameDTO.getTimeRemaining(),
+                playedGameDTO.getQuestionLanguage(),
+                playedGameDTO.getAnswerLanguage()
         );
 
         playedGameRepository.save(pg);
@@ -122,12 +123,25 @@ public class LanguageGameService {
     public StatisticsDTO getGameStatistics(User user) {
         List<PlayedGame> playedGames = playedGameRepository.findPlayedGamesByUserOrderByPlayedAt(user);
 
+        return getStatisticsDTO(playedGames, true);
+    }
+
+    public StatisticsDTO getGameStatistics(User user, String questionLanguage, String answerLanguage) {
+        List<PlayedGame> playedGames = playedGameRepository.findPlayedGamesByUserAndQuestionLanguageAndAnswerLanguageOrderByPlayedAt(user, questionLanguage, answerLanguage);
+
+        return getStatisticsDTO(playedGames, false);
+    }
+
+    private static StatisticsDTO getStatisticsDTO(List<PlayedGame> playedGames, boolean includeLanguages) {
         StatisticsDTO statisticsDTO = new StatisticsDTO();
         statisticsDTO.setCorrect(playedGames.stream().map(PlayedGame::getCorrect).collect(Collectors.toList()));
         statisticsDTO.setQuestions(playedGames.stream().map(PlayedGame::getQuestions).collect(Collectors.toList()));
         statisticsDTO.setTimeRemaining(playedGames.stream().map(PlayedGame::getTimeRemaining).collect(Collectors.toList()));
         statisticsDTO.setTimePlayed(playedGames.stream().map(PlayedGame::getPlayedAt).collect(Collectors.toList()));
-
+        if (includeLanguages) {
+            statisticsDTO.setQuestionLanguages(playedGames.stream().map(PlayedGame::getQuestionLanguage).collect(Collectors.toList()));
+            statisticsDTO.setAnswerLanguages(playedGames.stream().map(PlayedGame::getAnswerLanguage).collect(Collectors.toList()));
+        }
         return statisticsDTO;
     }
 }

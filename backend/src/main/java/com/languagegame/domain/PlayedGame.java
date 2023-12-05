@@ -21,16 +21,21 @@ public class PlayedGame {
     private int questions;
     private int timeRemaining;
 
+    private String questionLanguage;
+    private String answerLanguage;
+
     public PlayedGame() {
 
     }
 
-    public PlayedGame(User user, LocalDateTime playedAt, int correct, int questions, int timeRemaining) {
+    public PlayedGame(User user, LocalDateTime playedAt, int correct, int questions, int timeRemaining, String questionLanguage, String answerLanguage) {
         this.user = user;
         this.playedAt = playedAt;
         this.correct = correct;
         this.questions = questions;
         this.timeRemaining = timeRemaining;
+        this.questionLanguage = questionLanguage;
+        this.answerLanguage = answerLanguage;
     }
 
     public long getId() {
@@ -79,5 +84,21 @@ public class PlayedGame {
 
     public void setTimeRemaining(int timeTaken) {
         this.timeRemaining = timeTaken;
+    }
+
+    public String getQuestionLanguage() {
+        return questionLanguage;
+    }
+
+    public void setQuestionLanguage(String fromLanguage) {
+        this.questionLanguage = fromLanguage;
+    }
+
+    public String getAnswerLanguage() {
+        return answerLanguage;
+    }
+
+    public void setAnswerLanguage(String toLanguage) {
+        this.answerLanguage = toLanguage;
     }
 }

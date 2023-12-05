@@ -54,4 +54,15 @@ public class LanguageGameController {
 
         return ResponseEntity.ok(statistics);
     }
+
+    @GetMapping("/games/{questionLanguage}/{answerLanguage}")
+    public ResponseEntity<StatisticsDTO> getGameStatistics(Authentication authentication, @PathVariable String questionLanguage, @PathVariable String answerLanguage) {
+        StatisticsDTO statistics = languageGameService.getGameStatistics(
+                ((UserDetailsImpl) authentication.getPrincipal()).getUser(),
+                questionLanguage,
+                answerLanguage
+        );
+
+        return ResponseEntity.ok(statistics);
+    }
 }
