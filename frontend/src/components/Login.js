@@ -19,7 +19,8 @@ function Login() {
         <div>
             <nav className="menu">
                 <div className="buttons">
-                    <a href="https://practice-languages.fly.dev/authorization/google">Login</a>
+                    {/*<a href="/authorization/google">Login Google</a>*/}
+                    <a href="/oauth2/authorization/github">Login Github</a>
                     <Link to="/">Menu</Link>
                 </div>
             </nav>

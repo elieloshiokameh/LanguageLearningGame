@@ -12,6 +12,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,7 +27,7 @@ import java.util.List;
 
 @Configuration
 @EnableMethodSecurity //defaults: (securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
-//@EnableWebSecurity //Uncomment to prioritise Spring Security's web security config
+@EnableWebSecurity //Uncomment to prioritise Spring Security's web security config
                     // over Spring Boot's web security config
 public class WebSecurityConfig {
 
@@ -65,12 +66,13 @@ public class WebSecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
-        configuration.setAllowedMethods(List.of("GET","POST","OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Content-Type")); // Fixes preflight requests
+        configuration.setAllowedOrigins(List.of("*","https://practice-languages.fly.dev", "http://practice-languages.fly.dev",
+                "http://practice-languages.fly.dev/**", "https://practice-languages.fly.dev/**","http://localhost:3000"));
+        configuration.setAllowedMethods(List.of("*","POST","GET","OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*","Content-Type")); // Fixes preflight requests
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
         return source;
     }
 
@@ -86,6 +88,7 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.NEVER))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/error/**").permitAll()
+                                .requestMatchers("/api/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
 //                                .requestMatchers("/api/test/**").permitAll()
                                 .requestMatchers("/tmp_login").permitAll()

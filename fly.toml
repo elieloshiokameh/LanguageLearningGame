@@ -7,7 +7,7 @@ app = "practice-languages"
 primary_region = "lhr"
 
 [build]
-  image = "docker-java-jar:0.1"
+  image = "practicelanguages:latest"
 
 [http_service]
   internal_port = 8080

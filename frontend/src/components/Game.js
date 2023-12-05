@@ -89,7 +89,7 @@ function Game() {
             try {
                 console.log("count being posted: ", count);
                 console.log("seconds being posted: ", seconds);
-                fetch('/api/game',
+                fetch("/api/game",
                     {method: 'POST',
                         credentials: 'include',
                         headers: {'Content-Type': 'application/json'},
